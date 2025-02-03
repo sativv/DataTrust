@@ -18,6 +18,7 @@ var keyVaultUrl = new Uri("https://kv-datatrust-deo.vault.azure.net/");
 
 
 builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
+
 System.Diagnostics.Trace.TraceError(builder.Configuration["Authentication:Google:ClientId"]);
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
@@ -80,7 +81,10 @@ builder.Services.AddAuthentication(options =>
     }
     */
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+    // options.ClientId = "33499734873-nmf6pi5umcr78ovabl45ln1te4amkri2.apps.googleusercontent.com";
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    // options.ClientSecret = "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";
+
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
     options.Scope.Add("openid");
