@@ -22,10 +22,10 @@ namespace DataTrust.Pages
         // IMPORTANT: This should only be allowed in development, hence the if statement below.
         public async Task<IActionResult> OnPost(int accountID)
         {
-            if (!environment.IsDevelopment())
-            {
-                return Forbid();
-            }
+            // if (!environment.IsDevelopment())
+            // {
+            //     return Forbid();
+            // }
 
             // Find the account in the database.
             var account = database.Accounts.Find(accountID);

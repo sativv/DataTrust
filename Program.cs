@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
 
@@ -13,8 +14,12 @@ var builder = WebApplication.CreateBuilder(args);
 var keyVaultUrl = new Uri("https://kv-datatrust-deo.vault.azure.net/");
 
 
+using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddConsole());
+ILogger logger = factory.CreateLogger("Program");
+
 
 builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
+logger.LogInformation(builder.Configuration["Authentication:Google:ClientId"]);
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
