@@ -12,6 +12,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 var keyVaultUrl = new Uri("https://kv-datatrust-deo.vault.azure.net/");
 
+
+
 builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
