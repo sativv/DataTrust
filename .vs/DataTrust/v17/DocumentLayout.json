@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Emma\\DataTrust\\DataTrust\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|c:\\users\\emma\\datatrust\\datatrust\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|c:\\users\\emma\\datatrust\\datatrust\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -20,10 +24,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|c:\\users\\emma\\datatrust\\datatrust\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
       "RelativeMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|c:\\users\\emma\\datatrust\\datatrust\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{941C020F-009F-43AA-A071-5A6B09B589D5}|DataTrust.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +33,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 27,
+          "SelectedChildIndex": 26,
           "Children": [
             {
               "$type": "Bookmark",
@@ -125,7 +125,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "secrets.json",
               "DocumentMoniker": "C:\\Users\\Emma\\AppData\\Roaming\\Microsoft\\UserSecrets\\0962eb9b-864f-49b1-bece-377685b07f5c\\secrets.json",
               "RelativeDocumentMoniker": "..\\..\\AppData\\Roaming\\Microsoft\\UserSecrets\\0962eb9b-864f-49b1-bece-377685b07f5c\\secrets.json",
@@ -138,7 +138,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "20250203110306_start4.cs",
               "DocumentMoniker": "C:\\Users\\Emma\\DataTrust\\DataTrust\\Migrations\\20250203110306_start4.cs",
               "RelativeDocumentMoniker": "Migrations\\20250203110306_start4.cs",
@@ -151,7 +151,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "20250203110147_start3.cs",
               "DocumentMoniker": "C:\\Users\\Emma\\DataTrust\\DataTrust\\Migrations\\20250203110147_start3.cs",
               "RelativeDocumentMoniker": "Migrations\\20250203110147_start3.cs",
@@ -164,7 +164,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": ".gitignore",
               "DocumentMoniker": "C:\\Users\\Emma\\DataTrust\\DataTrust\\.gitignore",
               "RelativeDocumentMoniker": ".gitignore",
@@ -177,20 +177,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Users\\Emma\\DataTrust\\DataTrust\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
               "ToolTip": "C:\\Users\\Emma\\DataTrust\\DataTrust\\appsettings.json",
               "RelativeToolTip": "appsettings.json",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAADAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-02-03T10:33:19.728Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Emma\\DataTrust\\DataTrust\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
