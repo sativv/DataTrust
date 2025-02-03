@@ -1,0 +1,7 @@
+﻿bin/
+obj/
+*.log
+*.tmp
+
+/FileContentIndex/
+*.vsidx
