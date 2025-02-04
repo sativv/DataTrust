@@ -17,39 +17,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 var keyVaultUrl = new Uri("https://kv-datatrust-deo.vault.azure.net/");
 
-
-
-
-
-
 builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
+
 builder.Services.AddOpenTelemetry().UseAzureMonitor();
-// var tracerProvider = Sdk.CreateTracerProviderBuilder()
-//     .AddAzureMonitorTraceExporter(options => {
-//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
-
-//     });
-
-// var metricsProvider = Sdk.CreateMeterProviderBuilder()
-//     .AddAzureMonitorMetricExporter(options => {
-//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
-
-//     });
-
-// var loggerFactory = LoggerFactory.Create(builder =>
-// {
-//     builder.AddOpenTelemetry(logging =>
-//     {
-//         logging.AddAzureMonitorLogExporter(options => {
-//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
-//         });
-//     });
-// });
-
-
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
-
 
 builder.Services.AddAuthentication(options =>
 {
@@ -93,30 +65,23 @@ builder.Services.AddAuthentication(options =>
 .AddOpenIdConnect("Google", options =>
 {
     options.Authority = "https://accounts.google.com";
-    /*
-    These two values (client ID and client secret) must be created in the Google Cloud Platform Console:
-    https://support.google.com/cloud/answer/6158849?hl=en
-    https://developers.google.com/identity/openid-connect/openid-connect
-    They must then be added to the project's "user secrets": right-click the project in Visual Studio and select "Manage User Secrets" and write the following JSON:
-    {
-       "Authentication": {
-           "Google": {
-               "ClientId": "...",
-               "ClientSecret": "..."
-           }
-       }
-    }
-    */
-
+  
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
+  
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
 
     options.ResponseType = OpenIdConnectResponseType.Code;
+  
     options.CallbackPath = "/signin-oidc-google";
+  
     options.Scope.Add("openid");
+  
     options.Scope.Add("profile");
+  
     options.Scope.Add("email");
+  
     options.SaveTokens = true;
+  
     options.GetClaimsFromUserInfoEndpoint = true;
 
     options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "sub");
