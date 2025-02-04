@@ -2,12 +2,16 @@ using Azure.Identity;
 using DataTrust.Data;
 using DataTrust.Models;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using System.Security.Claims;
+using OpenTelemetry;
+using Azure.Monitor.OpenTelemetry.AspNetCore;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,9 +21,32 @@ var keyVaultUrl = new Uri("https://kv-datatrust-deo.vault.azure.net/");
 
 
 
-builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
 
-System.Diagnostics.Trace.TraceError(builder.Configuration["Authentication:Google:ClientId"]);
+builder.Configuration.AddAzureKeyVault(keyVaultUrl, new DefaultAzureCredential());
+builder.Services.AddOpenTelemetry().UseAzureMonitor();
+// var tracerProvider = Sdk.CreateTracerProviderBuilder()
+//     .AddAzureMonitorTraceExporter(options => {
+//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
+
+//     });
+
+// var metricsProvider = Sdk.CreateMeterProviderBuilder()
+//     .AddAzureMonitorMetricExporter(options => {
+//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
+
+//     });
+
+// var loggerFactory = LoggerFactory.Create(builder =>
+// {
+//     builder.AddOpenTelemetry(logging =>
+//     {
+//         logging.AddAzureMonitorLogExporter(options => {
+//             options.ConnectionString = "InstrumentationKey=7e4af707-628a-41a1-9f3e-660ff70b76ea;IngestionEndpoint=https://northeurope-2.in.applicationinsights.azure.com/;LiveEndpoint=https://northeurope.livediagnostics.monitor.azure.com/;ApplicationId=0ba0eedd-61f7-43ed-9fb2-ec9dff8e2834";
+//         });
+//     });
+// });
+
+
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration["ConnectionStrings:DefaultConnection"]));
 
@@ -80,10 +107,9 @@ builder.Services.AddAuthentication(options =>
        }
     }
     */
+
     options.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    // options.ClientId = "33499734873-nmf6pi5umcr78ovabl45ln1te4amkri2.apps.googleusercontent.com";
     options.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
-    // options.ClientSecret = "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";
 
     options.ResponseType = OpenIdConnectResponseType.Code;
     options.CallbackPath = "/signin-oidc-google";
@@ -112,6 +138,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<AccessControl>();
+
 
 var app = builder.Build();
 
